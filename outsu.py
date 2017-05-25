@@ -53,6 +53,8 @@ def binarizando_com_outsu(path_img):
     plt.subplot(3, 1, 3), plt.imshow(imgf, cmap='gray')
     plt.title('Otsu thresholding'), plt.xticks([]), plt.yticks([])
     plt.show()
+    #salvando a imagem
+
 
 def get_valores_limiar(path_img):
     '''
