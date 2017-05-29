@@ -137,7 +137,14 @@ def k_means(dataset, k):
     #     ]
     # print k_means(points, 3)
 
-def kmeans_cv2(path_img):
+def ver_imagem(img):
+    # exibe a imagem
+    c.imshow('res2', img)
+    c.waitKey(0)
+    c.destroyAllWindows()
+
+
+def kmeans_cv2(path_img,nome):
     '''
     implememtação do kmeans com opencv
     :param path_img: 
@@ -145,6 +152,7 @@ def kmeans_cv2(path_img):
     '''
     img = c.imread(path_img)
     Z = img.reshape((-1, 3))
+    print(Z)
 
     # converte para np.float32
     Z = np.float32(Z)
@@ -159,12 +167,29 @@ def kmeans_cv2(path_img):
     res = center[label.flatten()]
     res2 = res.reshape((img.shape))
 
-    # exibe a imagem
-    c.imshow('res2', res2)
-    c.waitKey(0)
-    c.destroyAllWindows()
-    return res2
+    #ver_imagem(img)
+    tmp = '/home/nig/PycharmProjects/Segmentation/data/segmentadas/tmp.png'
+    c.imwrite(tmp, res2)
+    mask_zinza = c.imread(tmp,0)
+    c.imwrite(nome, sobrepor(imagem=img,mask_get=mask_zinza, mask_set=res2))
+
+def sobrepor(imagem, mask_get, mask_set):
+    '''
+    faz a sobreposicao da imagem origincal com a mascara para obter a ROI
+    :param imagem: imagem original nos 3 canais
+    :param mask_get: mascara em tons de zinza
+    :param mask_set: mascara nos 3 canais
+    :return: a imagem sobreposta
+    '''
+
+    for i in range(imagem.shape[0]):
+        for j in range(imagem.shape[1]):
+            if mask_get[i][j] > 0:
+                mask_set[i][j][0] = imagem[i][j][0]
+                mask_set[i][j][1] = imagem[i][j][1]
+                mask_set[i][j][2] = imagem[i][j][2]
+
+    return mask_set
 
 if __name__ == '__main__':
-        c.imwrite('/home/nig/PycharmProjects/Segmentation/data/segmentadas/1_seg.png',
-                  kmeans_cv2('/home/nig/PycharmProjects/Segmentation/data/imagens/retina/1.png'))
+        kmeans_cv2('/home/nig/PycharmProjects/Segmentation/data/imagens/retina/1.png', '1.png')
