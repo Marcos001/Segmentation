@@ -34,8 +34,9 @@ def binarizando_com_limiar(path_img):
     plt.show()
 
 def binarizando_com_outsu(path_img):
+
     '''
-    Aqui vem na binarização de Otsu.
+        Aqui vem na binarização de Otsu.
     Este algoritmo irá permitir-nos obter de forma
     rápida e automaticamente o valor limite
     correto para escolher entre dois modo de histograma,
