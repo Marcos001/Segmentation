@@ -39,7 +39,8 @@ def binarizando_com_outsu(path_img):
     Este algoritmo irá permitir-nos obter de forma
     rápida e automaticamente o valor limite
     correto para escolher entre dois modo de histograma,
-    permitindo-lhes aplicar o limiar de forma otimizada'''
+    permitindo-lhes aplicar o limiar de forma otimizada.
+    '''
 
     img = cv2.imread(path_img, 0)
 

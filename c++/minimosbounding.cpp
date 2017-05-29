@@ -31,7 +31,7 @@ int getMaximum(ImageType::Pointer image){
 	imageCalculatorFilter->Compute();
 	return imageCalculatorFilter->GetMaximum();
 }
-//  função apra criar imagem 
+//  funÃ§Ã£o apra criar imagem
 ImageType::Pointer createImage1(ImageType::Pointer image){
 	
 		ImageType::Pointer newImage = ImageType::New();
@@ -72,7 +72,7 @@ ImageType::Pointer KmenasClutering(ImageType::Pointer image, int numCluster){
 	typedef itk::OtsuMultipleThresholdsImageFilter <ImageType, ImageType> FilterType;
 	FilterType::Pointer otsuFilter = FilterType::New();
 	otsuFilter->SetInput(image);
-	// passa o numero de classes 3 porém se apenas 2 classes. numclusteer= 2
+	// passa o numero de classes 3 porï¿½m se apenas 2 classes. numclusteer= 2
 	otsuFilter->SetNumberOfThresholds(numCluster-1);
 	otsuFilter->Update();
 	// separa as classes 
@@ -98,7 +98,7 @@ ImageType::Pointer getRegions(ImageType::Pointer image, int clusterizador){
 	if (clusterizador == 2)
 		// segmenta utilizando o kmeans 
 		imageOtsu = KmenasClutering(image,3);
-	// região de interesse da imagem 
+	// regiï¿½o de interesse da imagem 
 	ImageType::Pointer imgRegion;
 	ImageType::SizeType size;
 	size = imageOtsu->GetLargestPossibleRegion().GetSize();
@@ -125,7 +125,7 @@ ImageType::Pointer getRegions(ImageType::Pointer image, int clusterizador){
 			position[0] = x;
 			position[1] = y;
 			int value = (int)imageOtsu->GetPixel(position);
-			//todos os voxels começam de 0
+			//todos os voxels comeï¿½am de 0
 			if (value != background){
 				//if ((value + min) < 0 || value > sizeHistograma)
 					//cout << "DEU MERDA: " << value << endl;
@@ -163,7 +163,7 @@ ImageType::Pointer getRegions(ImageType::Pointer image, int clusterizador){
 			imageAux = 0;
 		}
 	}
-	// retorna a região isolada 
+	// retorna a regiï¿½o isolada 
 	return regionIsolada.at(p);
 }
 // cria uma imagem 
@@ -228,7 +228,7 @@ int* getBoundBox(ImageType::Pointer image){
 void createIMagemMask(ImageType::Pointer original, ImageType::Pointer mask){
 	// tipo da imagem
 	ImageType::SizeType size;
-	// recebe a possição da imagem 
+	// recebe a possiï¿½ï¿½o da imagem 
 	size = original->GetLargestPossibleRegion().GetSize();
 
 	int x, y; 
@@ -268,21 +268,21 @@ void getRegionCircular(ImageType::Pointer image, int *bb, int voi){
 		raio = (bb[1] - bb[0])/2;
 	else
 		raio = (bb[3] - bb[2])/2;
-	// cento a a subtração do maior X ou Y com o Menor X ou Y dividido por 2, mais o Menor X ou Y 
+	// cento a a subtraï¿½ï¿½o do maior X ou Y com o Menor X ou Y dividido por 2, mais o Menor X ou Y 
 	centro[0] = (bb[1] - bb[0]) / 2 + bb[0];
 	centro[1] = (bb[3] - bb[2]) / 2 + bb[2];
 
 	ImageType::SizeType size = image->GetLargestPossibleRegion().GetSize();
 	// criar a imagem 
 	ImageType::Pointer newImage = createImage(image);
-	// Essa função atribui tudo que estive dentro do raio 
+	// Essa funï¿½ï¿½o atribui tudo que estive dentro do raio 
 	for(int y = 0; y < size[1]; y++){
 		for(int x = 0; x < size[0]; x++){
 			ImageType::IndexType position;
 			position[0] = x;
 			position[1] = y;
 			double dist = (double)getDistance(centro, position);
-			// Se a distancia menor que o raio esse faz parte da imagem se não não atribui a imagem
+			// Se a distancia menor que o raio esse faz parte da imagem se nï¿½o nï¿½o atribui a imagem
 			if (dist <= raio){
 				newImage->SetPixel(position,image->GetPixel(position));
 			}
@@ -290,7 +290,7 @@ void getRegionCircular(ImageType::Pointer image, int *bb, int voi){
 		}
 	// escrever a imagem 
 	    path5.str("");
-		path5<<"F:\\RIM-ONE\\Artigo WIM 2\\Segmentação\\KmeansCircular\\Glaucomatosas Circular Kmeans\\"<<voi<<".bmp";
+		path5<<"F:\\RIM-ONE\\Artigo WIM 2\\Segmentaï¿½ï¿½o\\KmeansCircular\\Glaucomatosas Circular Kmeans\\"<<voi<<".bmp";
 		WriterType::Pointer writer = WriterType::New();
 		writer->SetFileName(path5.str());
 		writer->SetInput(newImage);
@@ -307,7 +307,7 @@ int main(){
     stringstream path3;
 	// percorrer as 40 imagens glaucomatosas 
 	for (int voi = 1; voi<=40;voi++){
-		// endereço da imagem
+		// endereï¿½o da imagem
 		path.str("");
 		path<<"F:\\RIM-ONE\\Artigo WIM 2\\Com varios niveis de glaucoma\\"<<voi<<".bmp";
 		cout<<path.str();
@@ -319,7 +319,7 @@ int main(){
 		ImageType::Pointer image = reader->GetOutput();
 		//escrever imagem 
 		path1.str("");
-		path1<<"F:\\RIM-ONE\\Artigo WIM 2\\Segmentação\\KmeansCircular\\circular\\"<<voi<<".bmp";
+		path1<<"F:\\RIM-ONE\\Artigo WIM 2\\Segmentaï¿½ï¿½o\\KmeansCircular\\circular\\"<<voi<<".bmp";
 		WriterType::Pointer writer = WriterType::New();
 		writer->SetFileName(path1.str());
 		// passa a imagem e o valor passa saber qual algoritmo vai usar se e o OTSU ou Kmeans 
@@ -341,7 +341,7 @@ int main(){
 		ImageType::Pointer original = reader2->GetOutput();
 		//ler sedunda imagem
 		path.str("");
-		path<<"F:\\RIM-ONE\\Artigo WIM 2\\Segmentação\\KmeansCircular\\circular\\"<<vo<<".bmp";
+		path<<"F:\\RIM-ONE\\Artigo WIM 2\\Segmentaï¿½ï¿½o\\KmeansCircular\\circular\\"<<vo<<".bmp";
 		cout<<path.str();
 		ReaderType::Pointer reader3 = ReaderType::New();//ler a imagem
 		reader3->SetFileName(path.str());

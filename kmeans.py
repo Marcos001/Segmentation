@@ -1,6 +1,9 @@
 from collections import defaultdict
 from random import uniform
 from math import sqrt
+import cv2 as c
+import numpy as np
+
 
 
 def point_avg(points):
@@ -24,7 +27,6 @@ def point_avg(points):
 
     return new_center
 
-
 def update_centers(data_set, assignments):
     """
     Accepts a dataset and a list of assignments; the indexes
@@ -41,7 +43,6 @@ def update_centers(data_set, assignments):
         centers.append(point_avg(points))
 
     return centers
-
 
 def assign_points(data_points, centers):
     """
@@ -66,7 +67,6 @@ def assign_points(data_points, centers):
         assignments.append(shortest_index)
     return assignments
 
-
 def distance(a, b):
     """
     """
@@ -77,7 +77,6 @@ def distance(a, b):
         difference_sq = (a[dimension] - b[dimension]) ** 2
         _sum += difference_sq
     return sqrt(_sum)
-
 
 def generate_k(data_set, k):
     """
@@ -112,7 +111,6 @@ def generate_k(data_set, k):
 
     return centers
 
-
 def k_means(dataset, k):
     k_points = generate_k(dataset, k)
     assignments = assign_points(dataset, k_points)
@@ -138,3 +136,35 @@ def k_means(dataset, k):
     #     [14, 14],
     #     ]
     # print k_means(points, 3)
+
+def kmeans_cv2(path_img):
+    '''
+    implememtação do kmeans com opencv
+    :param path_img: 
+    :return: a imagem segmentada
+    '''
+    img = c.imread(path_img)
+    Z = img.reshape((-1, 3))
+
+    # converte para np.float32
+    Z = np.float32(Z)
+
+    # define criteria, numero de clusters(K) e aplica o kmeans()
+    criteria = (c.TERM_CRITERIA_EPS + c.TERM_CRITERIA_MAX_ITER, 10, 1.0)
+    K = 2
+    ret, label, center = c.kmeans(Z, K, None, criteria, 10, c.KMEANS_RANDOM_CENTERS)
+
+    # Agora converta de volta em uint8 e faça a imagem original
+    center = np.uint8(center)
+    res = center[label.flatten()]
+    res2 = res.reshape((img.shape))
+
+    # exibe a imagem
+    c.imshow('res2', res2)
+    c.waitKey(0)
+    c.destroyAllWindows()
+    return res2
+
+if __name__ == '__main__':
+        c.imwrite('/home/nig/PycharmProjects/Segmentation/data/segmentadas/1_seg.png',
+                  kmeans_cv2('/home/nig/PycharmProjects/Segmentation/data/imagens/retina/1.png'))
