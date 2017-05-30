@@ -1,3 +1,3 @@
-execução 0 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/400/cinza/28.png = 0.1399155340004654
-execução 1 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/400/cinza/21.png = 0.009635511998567381
-execução 2 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/400/cinza/17.png = 0.008919714999137796
+execução 0 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/400/cinza/28.png = 0.009389128001203062
+execução 1 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/400/cinza/21.png = 0.007119546999092563
+execução 2 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/400/cinza/17.png = 0.0076096899992990075
