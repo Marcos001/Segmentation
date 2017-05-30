@@ -169,6 +169,7 @@ def passar_canal_verde(mask_set):
     return mask_set
 
 def sobrepor(imagem, mask_get, mask_set, menor, maior):
+
     '''
     faz a sobreposicao da imagem origincal com a mascara para obter a ROI
     :param imagem: imagem original nos 3 canais
@@ -192,11 +193,13 @@ def sobrepor(imagem, mask_get, mask_set, menor, maior):
     return mask_set
 
 def kmeans_cv2(img,nome):
+
     '''
     implememtação do kmeans com opencv
     :param path_img: 
     :return: a imagem segmentada
     '''
+
     #img = c.imread(path_img)
     Z = img.reshape((-1, 3))
 

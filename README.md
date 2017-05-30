@@ -1,5 +1,9 @@
 # Segmentation
-Segmentação Com Limiar e cluster
+Segmentação Com Otsu e Kmeans
+
+primeiro teste com 400 x 400
+
+segundo teste com 800 x 800
 
 O algoritmo: Como funciona a binarização de Otsu
 
