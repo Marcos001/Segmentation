@@ -1,0 +1,3 @@
+execução 0 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/400/cinza/28.png = 5.031608940998922
+execução 1 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/400/cinza/21.png = 4.126023217000693
+execução 2 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/400/cinza/17.png = 4.63441691999833

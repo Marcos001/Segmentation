@@ -192,7 +192,7 @@ def sobrepor(imagem, mask_get, mask_set, menor, maior):
     passar_canal_verde(mask_set)
     return mask_set
 
-def kmeans_cv2(img,nome):
+def kmeans_cv2(path_img, nome_img):
 
     '''
     implememtação do kmeans com opencv
@@ -200,7 +200,7 @@ def kmeans_cv2(img,nome):
     :return: a imagem segmentada
     '''
 
-    #img = c.imread(path_img)
+    img = c.imread(path_img)
     Z = img.reshape((-1, 3))
 
     # converte para np.float32
@@ -228,7 +228,7 @@ def kmeans_cv2(img,nome):
     maior, menor = get_maximo_minimo(mask_zinza)
     ver_imagem(mask_zinza)
     #finaliza salvandoa imagem
-    c.imwrite(nome, sobrepor(imagem=img,mask_get=mask_zinza, mask_set=res2,menor=menor, maior=maior))
+    c.imwrite(nome_img, sobrepor(imagem=img, mask_get=mask_zinza, mask_set=res2, menor=menor, maior=maior))
 
 
 
