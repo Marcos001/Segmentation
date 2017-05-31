@@ -218,11 +218,11 @@ def kmeans_cv2(path_img, nome_img):
 
     #ver_imagem(img)
 
-    tmp = '/home/nig/PycharmProjects/Segmentation/data/segm-tmp/tmp.png'
-    c.imwrite(tmp, res2)
-    mask_zinza = c.imread(tmp, 0)
-    maior, menor = get_maximo_minimo(mask_zinza)
+    #tmp = '/home/nig/PycharmProjects/Segmentation/data/segm-tmp/tmp.png'
+    c.imwrite(nome_img, res2)
+    #mask_zinza = c.imread(tmp, 0)
+    #maior, menor = get_maximo_minimo(mask_zinza)
     #finaliza salvandoa imagem
-    c.imwrite(nome_img, sobrepor(imagem=img, mask_get=mask_zinza, mask_set=res2, menor=menor, maior=maior))
+    #c.imwrite(nome_img, sobrepor(imagem=img, mask_get=mask_zinza, mask_set=res2, menor=menor, maior=maior))
 
 

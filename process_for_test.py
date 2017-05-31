@@ -29,10 +29,10 @@ def redimensionando(path_img, id, altura, largura):
 
 
 def get_imagens(path_imgs):
-    resolucao = 800
+    resolucao = 400
     lista_imagens = glob.glob(pathname=path_imgs)
     for i in range(len(lista_imagens)):
-        if i < 61:
+        if i < 60:
             print(i, ' processando imagem ', resolucao, 'x', resolucao, ' <> ' , lista_imagens[i])
             redimensionando(path_img=lista_imagens[i],
                             id=i,
