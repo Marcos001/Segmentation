@@ -210,17 +210,13 @@ def kmeans_cv2(path_img, nome_img):
     criteria = (c.TERM_CRITERIA_EPS + c.TERM_CRITERIA_MAX_ITER, 10, 1.0)
     K = 2
     ret, label, center = c.kmeans(Z, K, None, criteria, 10, c.KMEANS_RANDOM_CENTERS)
-    print('ret = ', ret, ' ', type(ret))
-    print('label = ', label, ' ', type(label))
-    print('center = ', center, ' ', type(center))
-    print('criteria = ', criteria, ' ', type(criteria))
 
     # Agora converta de volta em uint8 e faça a imagem original
     center = np.uint8(center)
     res = center[label.flatten()]
     res2 = res.reshape((img.shape))
 
-    ver_imagem(img)
+    #ver_imagem(img)
 
     tmp = '/home/nig/PycharmProjects/Segmentation/data/segmentadas/tmp.png'
     c.imwrite(tmp, res2)
