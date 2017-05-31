@@ -163,9 +163,9 @@ def passar_canal_verde(mask_set):
     '''
     for i in range(mask_set.shape[0]):
         for j in range(mask_set.shape[1]):
+            mask_set[i][j][0] = 0
             mask_set[i][j][2] = 0
-            mask_set[i][j][1] = 0
-    ver_imagem(mask_set)
+    #ver_imagem(mask_set)
     return mask_set
 
 def sobrepor(imagem, mask_get, mask_set, menor, maior):
@@ -218,17 +218,11 @@ def kmeans_cv2(path_img, nome_img):
 
     #ver_imagem(img)
 
-    tmp = '/home/nig/PycharmProjects/Segmentation/data/segmentadas/tmp.png'
+    tmp = '/home/nig/PycharmProjects/Segmentation/data/segm-tmp/tmp.png'
     c.imwrite(tmp, res2)
     mask_zinza = c.imread(tmp, 0)
     maior, menor = get_maximo_minimo(mask_zinza)
-    ver_imagem(mask_zinza)
     #finaliza salvandoa imagem
     c.imwrite(nome_img, sobrepor(imagem=img, mask_get=mask_zinza, mask_set=res2, menor=menor, maior=maior))
 
 
-
-if __name__ == '__main__':
-        #kmeans_cv2('/home/nig/PycharmProjects/Segmentation/data/imagens/retina/Im001.bmp', 'segmentada.png')
-        img_verde = passar_canal_verde(c.imread('/home/nig/PycharmProjects/Segmentation/data/imagens/retina/Im001.bmp'))
-        kmeans_cv2(img_verde, 'verde.png')
