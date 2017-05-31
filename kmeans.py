@@ -155,7 +155,36 @@ def get_maximo_minimo(imagem):
                 menor = imagem[i][j]
     return maior, menor
 
+
+def passar_canal_azul(mask_set):
+    '''
+
+    :param mask_set:
+    :return:
+    '''
+    for i in range(mask_set.shape[0]):
+        for j in range(mask_set.shape[1]):
+            mask_set[i][j][1] = 0
+            mask_set[i][j][2] = 0
+    # ver_imagem(mask_set)
+    return mask_set
+
+
 def passar_canal_verde(mask_set):
+    '''
+
+    :param mask_set:
+    :return:
+    '''
+    for i in range(mask_set.shape[0]):
+        for j in range(mask_set.shape[1]):
+            mask_set[i][j][0] = 0
+            mask_set[i][j][2] = 0
+    # ver_imagem(mask_set)
+    return mask_set
+
+
+def passar_canal_vermelho(mask_set):
     '''
     
     :param mask_set: 
@@ -164,7 +193,7 @@ def passar_canal_verde(mask_set):
     for i in range(mask_set.shape[0]):
         for j in range(mask_set.shape[1]):
             mask_set[i][j][0] = 0
-            mask_set[i][j][2] = 0
+            mask_set[i][j][1] = 0
     #ver_imagem(mask_set)
     return mask_set
 
@@ -189,7 +218,6 @@ def sobrepor(imagem, mask_get, mask_set, menor, maior):
                 mask_set[i][j][1] = 0
                 mask_set[i][j][2] = 0
 
-    passar_canal_verde(mask_set)
     return mask_set
 
 def kmeans_cv2(path_img, nome_img):
@@ -201,6 +229,7 @@ def kmeans_cv2(path_img, nome_img):
     '''
 
     img = c.imread(path_img)
+
     Z = img.reshape((-1, 3))
 
     # converte para np.float32
@@ -224,5 +253,59 @@ def kmeans_cv2(path_img, nome_img):
     #maior, menor = get_maximo_minimo(mask_zinza)
     #finaliza salvandoa imagem
     #c.imwrite(nome_img, sobrepor(imagem=img, mask_get=mask_zinza, mask_set=res2, menor=menor, maior=maior))
+
+
+def kmeans_cv2_sobreposta(path_img, nome_img, opcao):
+
+    '''
+    implememtação do kmeans com opencv
+    :param path_img:
+    :return: a imagem segmentada
+    '''
+
+    img = c.imread(path_img)
+
+    # a image ja se encontra segmentada
+    if opcao == 'b':
+        img = passar_canal_azul(img)
+
+    if opcao == 'g':
+        img = passar_canal_verde(img)
+
+    if opcao == 'r':
+        img = passar_canal_vermelho(img)
+
+    #ver_imagem(img)
+    Z = img.reshape((-1, 3))
+
+    # converte para np.float32
+    Z = np.float32(Z)
+
+    # define criteria, numero de clusters(K) e aplica o kmeans()
+    criteria = (c.TERM_CRITERIA_EPS + c.TERM_CRITERIA_MAX_ITER, 10, 1.0)
+    K = 2
+    ret, label, center = c.kmeans(Z, K, None, criteria, 10, c.KMEANS_RANDOM_CENTERS)
+
+    # Agora converta de volta em uint8 e faça a imagem original
+    center = np.uint8(center)
+    res = center[label.flatten()]
+    res2 = res.reshape((img.shape))
+
+    #ver_imagem(img)
+
+    tmp = '/home/mrv/PycharmProjects/Segmentation/data/segm-tmp/tmp.png'
+    c.imwrite(tmp, res2)
+    mask_zinza = c.imread(tmp, 0)
+    print(mask_zinza.shape)
+    #ver_imagem(mask_zinza)
+    maior, menor = get_maximo_minimo(mask_zinza)
+    #finaliza salvandoa imagem
+    #ver_imagem(img)
+    #ver_imagem(mask_zinza)
+
+    mask_set = sobrepor(imagem=img, mask_get=mask_zinza, mask_set=res2, menor=menor, maior=maior)
+    c.imwrite(nome_img, mask_set)
+
+
 
 

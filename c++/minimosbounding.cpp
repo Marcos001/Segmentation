@@ -182,12 +182,14 @@ ImageType::Pointer createImage(ImageType::Pointer image){
 	return newImage;
 }
 int* getBoundBox(ImageType::Pointer image){
+
 	int minx = 9999, miny = 9999, maxx = -1, maxy = -1;
 	
 	ImageType::RegionType region;
 	region = image->GetLargestPossibleRegion();
 	itk::ImageRegionIterator<ImageType> imageIterator(image,region);
 	int background = getMinimum(image);
+	
 	while(!imageIterator.IsAtEnd())
 	{
 		short val = imageIterator.Get();
