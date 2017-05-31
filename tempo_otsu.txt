@@ -1,20 +1,20 @@
-execução 0 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/400/cinza/28.png = 0.006585305000044173
-execução 1 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/400/cinza/21.png = 0.005714612000701891
-execução 2 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/400/cinza/17.png = 0.005666170999575115
+execução 0 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/400/cinza/61.png = 0.006511039999168133 segundos
+execução 1 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/400/cinza/60.png = 0.005796138999357936 segundos
+execução 2 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/400/cinza/46.png = 0.005734349000704242 segundos
 
 
-execução 0 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/400/rgb/2.png = 0.010638249000294309
-execução 1 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/400/rgb/10.png = 0.010523526000724814
-execução 2 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/400/rgb/12.png = 0.010330855000574957
+execução 0 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/400/rgb/2.png = 0.01026912100132904 segundos
+execução 1 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/400/rgb/10.png = 0.01041561799866031 segundos
+execução 2 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/400/rgb/28.png = 0.010619606999171083 segundos
 
 
-execução 0 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/800/cinza/28.png = 0.02051369499986322
-execução 1 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/800/cinza/21.png = 0.025088080999921658
-execução 2 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/800/cinza/17.png = 0.025034693000634434
+execução 0 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/800/cinza/61.png = 0.019798068000454805 segundos
+execução 1 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/800/cinza/60.png = 0.01998219899905962 segundos
+execução 2 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/800/cinza/46.png = 0.01994534499863221 segundos
 
 
-execução 0 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/800/rgb/2.png = 0.039630328999919584
-execução 1 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/800/rgb/10.png = 0.05024734600010561
-execução 2 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/800/rgb/12.png = 0.04164943799969478
+execução 0 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/800/rgb/2.png = 0.03744292599913024 segundos
+execução 1 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/800/rgb/10.png = 0.038233002998822485 segundos
+execução 2 com imagem /home/nig/PycharmProjects/Segmentation/data/imagens/retina/800/rgb/28.png = 0.049042190999898594 segundos
 
 
