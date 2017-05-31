@@ -1,11 +1,10 @@
 # Segmentation
-Segmentação Com Otsu e Kmeans
 
-primeiro teste com 400 x 400
+Segmentação com Otsu e Kmeans e mesuração de tempo de execução com imagens da retina. As imagens estão em tons de cinza
+e RGB com tamanhos de 400x400 e 800x800.
 
-segundo teste com 800 x 800
 
-O algoritmo: Como funciona a binarização de Otsu
+Funcionamento da binarização do algoritmo de segmentação Otsu:
 
 σ2w(t)=q1(t)σ21(t)+q2(t)σ22(t)
 
