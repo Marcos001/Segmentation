@@ -182,23 +182,29 @@ ImageType::Pointer createImage(ImageType::Pointer image){
 	return newImage;
 }
 int* getBoundBox(ImageType::Pointer image){
+
 	int minx = 9999, miny = 9999, maxx = -1, maxy = -1;
 	
 	ImageType::RegionType region;
 	region = image->GetLargestPossibleRegion();
 	itk::ImageRegionIterator<ImageType> imageIterator(image,region);
 	int background = getMinimum(image);
+
 	while(!imageIterator.IsAtEnd())
 	{
 		short val = imageIterator.Get();
+
 		if (val != background){
-			ImageType::IndexType index;
+
+			ImageType::IndexType index; //pega o ponteiro da cordenada do valor selcionado
 			index = imageIterator.GetIndex();
+
 			//eixo X
 			if (index[0] < minx)
 				minx = index[0];
 			if (index[0] > maxx)
 				maxx = index[0];
+
 			//eixo Y
 			if (index[1] < miny)
 				miny = index[1];
@@ -222,7 +228,6 @@ int* getBoundBox(ImageType::Pointer image){
 	   bb[0] = minx; bb[1] = maxx; bb[2] = miny; bb[3] = maxy;
 	  
 	   return bb;
-
 }
 
 void createIMagemMask(ImageType::Pointer original, ImageType::Pointer mask){
