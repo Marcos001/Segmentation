@@ -1,7 +1,8 @@
 
-import cv2
+import cv2, glob
 from kmeans import ver_imagem
 from outsu import get_binarizando_com_outsu
+
 
 def getMinimum(image):
     ''''''
@@ -62,19 +63,30 @@ def get_bounding_box(img):
     ver_imagem(cv2.resize(img_img_src, (500,500)))
 
 
-def setar_retangulo_img(img, p):
+def setar_retangulo_img(img, p, nome_imagem):
     '''
     recorta a imagem com um traingulo em uma proporcao p
     :param img: 
     :return: 
     '''
+
+    #calculando a por
+
     altura = img.shape[0]
     largura = img.shape[1]
-    min_x = p
-    min_y = p
-    max_x = int(largura - p)
-    max_y = int(altura - p)
 
+    print(img.shape)
+
+    p_x = int(((largura * p ) /100))
+    p_y = int(((altura * p) / 100))
+    
+    print(p_x, p_y)
+    min_x = p_x
+    min_y = p_y
+    max_x = int(largura - p_x)
+    max_y = int(altura - p_y)
+    print('| menor x[' + str(min_x) + '] maior x[' + str(max_x) + '] | menor y[' + str(min_y) + '] maior y[' + str(max_y) + '] ')
+    
     img_src = img
 
     for i in range(img.shape[0]):
@@ -83,12 +95,20 @@ def setar_retangulo_img(img, p):
                 'bunda'
             else:
                 img_src[i][j] = 0
-    cv2.imwrite('/home/nig/PycharmProjects/Segmentation/bunda.png', img_src)
-    ver_imagem(cv2.resize(img_src,(600,400)))
+    cv2.imwrite(nome_imagem+'.png', img_src)
+    print('done.')
+    #ver_imagem(cv2.resize(img_src,(600,400)))
 
 if __name__ == '__main__':
     ''
-    path = '/media/nig/Arquivos/ICV/Bases de Imagens/Drishti GS1/Test/Images-Test/drishtiGS_003.png'
+    lista = glob.glob('/media/nig/Arquivos/ICV/Bases de Imagens/Drishti GS1/Test/Images-Test/*.png')
+
+    print('inagens = ', len(lista))
+    for i in range(len(lista)):
+        nome_img = lista[i].split('/Images-Test/')[1].split('.')[0]
+        print('processando imagem ', nome_img)
+        setar_retangulo_img(cv2.imread(lista[i]), 20, '/home/nig/Área de Trabalho/bunda/'+nome_img)
+
+
 
     #get_bounding_box(cv2.imread(path, 0))
-    setar_retangulo_img(cv2.imread(path), 500)
