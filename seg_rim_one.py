@@ -1,6 +1,6 @@
 import glob as g
 from kmeans import kmeans_cv2_sobreposta
-from outsu import binarizando_com_outsu_colorido
+from outsu import binarizando_com_outsu_colori
 
 path_normal_rim_one = '/media/mrv/Dados/Data-B/Normal/*.bmp'
 path_glaucomatosas_rim_one = '/media/mrv/Dados/Data-B/glaucomatosas/*.bmp'
