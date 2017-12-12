@@ -125,5 +125,5 @@ if __name__ == '__main__':
     ''
     #vendo_histograma_imagem('/home/mrv/PycharmProjects/Segmentation/data/imagens/natureza/fiolha.jpg')
     #binarizando_com_limiar('/home/mrv/PycharmProjects/Segmentation/data/imagens/natureza/fiolha.jpg')
-    binarizando_com_outsu('/home/mrv/PycharmProjects/Segmentation/data/imagens/retina/1.png')
+    #binarizando_com_outsu('/home/mrv/PycharmProjects/Segmentation/data/imagens/retina/1.png')
     #get_valores_limiar('/home/mrv/PycharmProjects/Segmentation/data/imagens/natureza/fiolha.jpg')
