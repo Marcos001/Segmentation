@@ -7,6 +7,7 @@ import timeit
 import glob
 from outsu import binarizando_com_outsu
 from kmeans import kmeans_cv2
+from watershed import segmentar_watersherd
 
 #instancia arquivo para escrever o tempo
 arquivo_kmeans = open('tempo_kmeans.txt', 'w')

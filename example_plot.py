@@ -1,6 +1,8 @@
 
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
+import matplotlib.mlab as mlab
+
 import os
 
 import cv2
@@ -86,6 +88,16 @@ def ver_quatro_imagens(t1, t2, t3, t4, img1, img2, img3, img4):
     eixo[1][1].set_title(t4)
     eixo[1][1].imshow(img4, cmap='gray')
 
+    plt.show()
+
+
+def histograma(imagem, hist):
+    imagem = configurar_imagem_para_matploit(imagem)
+    fig, axes = plt.subplots(1, 2, figsize=(8, 3))
+    axes[0].imshow(imagem, cmap=plt.cm.gray, interpolation='nearest')
+    axes[0].axis('off')
+    axes[1].plot(hist[1][:-1], hist[0], lw=2)
+    axes[1].set_title('histogram of grey values')
     plt.show()
 
 def amostra_01():
