@@ -32,14 +32,14 @@ lista_800_rgb = glob.glob('/home/nig/PycharmProjects/Segmentation/data/imagens/r
 
 
 '''-------------------------K-means-----------------------------'''
-print('executando o k-means')
+print('executando o k-means...')
 
 #calculando o tempo com kmeans em imagens 400 x 400 cinzas - rodar 30 vzs
 arquivo_kmeans.write('Kmeans_400_cinza')
 for i in range(len(lista_400_zinza)):
     tempo_k_means = timeit.timeit("kmeans_cv2({})".format("'"+lista_400_zinza[i]+"', '/home/nig/PycharmProjects/Segmentation/data/segmentadas/kmeans_400_cinza_"+str(i)+".png'"), setup="from __main__ import kmeans_cv2", number=1)
     arquivo_kmeans.write(','+str(tempo_k_means))
-arquivo_kmeans.write('\n\n')
+arquivo_kmeans.write('\n')
 
 
 #calculando o tempo com kmeans em imagens 400 x 400 rgb - rodar 30 vzs
@@ -69,7 +69,7 @@ arquivo_kmeans.close() #fechar o arquivo apos testes com o k-means
 
 
 '''-------------------------Otsu-----------------------------'''
-print('executando o Otsu')
+print('executando o Otsu...')
 
 #calculando o tempo com outsu em imagens 400 x 400 cinzas - rodar 30 vzs
 arquivo_otsu.write('Otsu_400_cinza')
@@ -111,7 +111,7 @@ arquivo_otsu.close()
 
 # rodar com watershed
 '''-------------------------watershed-----------------------------'''
-print('executando o watershed')
+print('executando o watershed...')
 
 #calculando o tempo com watershed em imagens 400 x 400 cinzas - rodar 30 vzs
 arquivo_watershed.write('Watershed_400_cinza')
@@ -142,10 +142,10 @@ arquivo_watershed.write('\n')
 # calculando o tempo com outsu em imagens 800 x 800 rgb - rodar 30 vzs
 arquivo_watershed.write('Watershed_800_rgb')
 for i in range(len(lista_800_rgb)):
-    arquivo_watershed = timeit.timeit("binarizando_com_outsu({})".format(
+    tempo_watershed = timeit.timeit("binarizando_com_outsu({})".format(
         "'" + lista_800_rgb[i] + "', '/home/nig/PycharmProjects/Segmentation/data/segmentadas/watersherd_800_rgb_" + str(
             i) + ".png'"), setup="from __main__ import segmentar_watersherd", number=1)
-    vari = 'execução ' + str(i) + ' com imagem ' + lista_800_rgb[i] + ' = ' + str(tempo_otsu)+' segundos'
-arquivo_watershed.write('\n\n')
+    arquivo_watershed.write(',' + str(tempo_watershed))
+arquivo_watershed.write('\n')
 arquivo_watershed.close()
 
