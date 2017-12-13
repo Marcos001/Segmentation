@@ -55,12 +55,7 @@ def segmentar_watersherd(path, nome_img):
     #ver_duas_imagens('normal', 'segmentada', img, markers)
 
 
-img1 = segmentar_watersherd('/home/nig/PycharmProjects/Segmentation/data/imagens/retina/400/rgb/1.png', '1.png')
-img2 = segmentar_watersherd('/home/nig/PycharmProjects/Segmentation/data/imagens/retina/400/rgb/2.png', '1.png')
-img3 = segmentar_watersherd('/home/nig/PycharmProjects/Segmentation/data/imagens/retina/400/rgb/3.png', '1.png')
-img4 = segmentar_watersherd('/home/nig/PycharmProjects/Segmentation/data/imagens/retina/400/rgb/4.png', '1.png')
 
-ver_quatro_imagens('1', '2', '3', '4', img1,img2, img3, img4)
 
 
 
