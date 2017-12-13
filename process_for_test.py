@@ -34,10 +34,7 @@ def get_imagens(path_imgs):
     for i in range(len(lista_imagens)):
         if i < 60:
             print(i, ' processando imagem ', resolucao, 'x', resolucao, ' <> ' , lista_imagens[i])
-            redimensionando(path_img=lista_imagens[i],
-                            id=i,
-                            altura=resolucao,
-                            largura=resolucao)
+            redimensionando(path_img=lista_imagens[i], id=i, altura=resolucao, largura=resolucao)
 
 
 
