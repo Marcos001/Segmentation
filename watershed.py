@@ -49,9 +49,18 @@ def segmentar_watersherd(path, nome_img):
     markers = cv2.watershed(img, markers)
     # img[markers == -1] = [255,0,0]
 
-    cv2.imwrite(nome_img, markers)
-    #return  markers
+    #cv2.imwrite(nome_img, markers)
+    return  markers
     #ver_quatro_imagens('sure_bg', 'sure_fb', 'unknow', 'markers', sure_bg, sure_fg, unknown, markers)
+    #ver_duas_imagens('normal', 'segmentada', img, markers)
+
+
+img1 = segmentar_watersherd('/home/nig/PycharmProjects/Segmentation/data/imagens/retina/400/rgb/1.png', '1.png')
+img2 = segmentar_watersherd('/home/nig/PycharmProjects/Segmentation/data/imagens/retina/400/rgb/2.png', '1.png')
+img3 = segmentar_watersherd('/home/nig/PycharmProjects/Segmentation/data/imagens/retina/400/rgb/3.png', '1.png')
+img4 = segmentar_watersherd('/home/nig/PycharmProjects/Segmentation/data/imagens/retina/400/rgb/4.png', '1.png')
+
+ver_quatro_imagens('1', '2', '3', '4', img1,img2, img3, img4)
 
 
 

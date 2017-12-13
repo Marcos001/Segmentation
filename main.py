@@ -10,6 +10,9 @@ from outsu import binarizando_com_outsu
 from kmeans import kmeans_cv2
 from watershed import segmentar_watersherd
 
+
+
+
 #instancia arquivo para escrever o tempo
 arquivo_kmeans = open('tempo_kmeans.csv', 'w')
 arquivo_otsu = open('tempo_otsu.csv', 'w')
@@ -30,7 +33,12 @@ lista_800_zinza = glob.glob('/home/nig/PycharmProjects/Segmentation/data/imagens
 lista_800_rgb = glob.glob('/home/nig/PycharmProjects/Segmentation/data/imagens/retina/800/rgb/*.png') #
 
 
+print(len(lista_400_zinza))
+print(len(lista_400_rgb))
+print(len(lista_800_zinza))
+print(len(lista_800_rgb))
 
+"""
 '''-------------------------K-means-----------------------------'''
 print('executando o k-means...')
 
@@ -148,4 +156,4 @@ for i in range(len(lista_800_rgb)):
     arquivo_watershed.write(',' + str(tempo_watershed))
 arquivo_watershed.write('\n')
 arquivo_watershed.close()
-
+"""
