@@ -13,6 +13,26 @@ def getMinimum(image):
                 menor = image[i][j]
     return menor
 
+
+def getMaximum(image):
+    ''''''
+    maior = 0
+    for i in range(image.shape[0]):
+        for j in range(image.shape[1]):
+            if image[i][j] > maior:
+                maior = image[i][j]
+    return maior
+
+def binarizar(image, maior):
+    for i in range(image.shape[0]):
+        for j in range(image.shape[1]):
+            if image[i][j] == maior:
+                image[i][j] = 255
+            else:
+                image[i][j] = 0
+    return image
+
+
 def get_bounding_box(img):
 
     minx = 9999
