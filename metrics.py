@@ -2,14 +2,37 @@
 import cv2, glob, os
 import example_plot as pl
 
-def acuracia(path_img, path_mask):
+def metrics(img, mask):
 
-    img = cv2.imread(path_img,0)
-    mask = cv2.imread(path_mask,0)
+    vp = 0
+    vn = 0
+    fp = 0
+    fn = 0
+    intra_ROI = 0
+    extra_ROI = 0
 
     for i in range(mask.shape[0]):
         for j in range(mask.shape[1]):
             """"""
+            if mask[i][j] == 255:
+                intra_ROI += 1
+                if mask[i][j] == img[i][j]:
+                    vp+=1
+                if mask[i][j] != img[i][j]:
+                    vn+=1
+            if mask[i][j] != 255:
+                extra_ROI += 1
+                if mask[i][j] == img[i][j]:
+                    fp += 1
+                if mask[i][j] != img[i][j]:
+                    fn += 1
+
+    sobreposition = vp / (vp+fp+fn)
+    acuracia = (vp+vn) / (vp + vn + fp + fn)
+    sensibilidade = vp / (vp + fn)
+    especificidade = (vn) / (vn + fp)
+
+    return vp, vn, fp, fn, float('%.2f' % ( acuracia * 100 )), float('%.2f' % ( sobreposition * 100 )), float('%.2f' % ( sensibilidade * 100 )), float('%.2f' % ( especificidade * 100 ))
 
 def search_mask(path_img):
     resolution, ton, nome = path_img.split('otsu_')[1].split('_')
@@ -23,16 +46,12 @@ def search_mask(path_img):
     if int(resolution) == 800:
         path_mask = path_root_mask + '800/' + nome.split('.')[0] + '_mask.png'
 
-    print(os._exists(path_mask), ' -> ',path_mask)
+    #pl.ver_duas_imagens('src', 'mask', cv2.imread(path_img), cv2.imread(path_mask))
 
-    pl.ver_duas_imagens('src', 'mask', cv2.imread(path_img), cv2.imread(path_mask))
-
-    #return cv2.imread(path_img,0)
+    return cv2.imread(path_img,0), cv2.imread(path_mask,0)
 
 def get_img_mask(path):
     ''''''
-
-
 
     lista_otsu = glob.glob(path+'otsu*')
     lista_kmeans = glob.glob(path + 'kmeans*')
@@ -42,8 +61,8 @@ def get_img_mask(path):
     # avaliation otsu
     print('Otsu -> ', len(lista_otsu))
     for i in lista_otsu:
-        search_mask(path_img=i)
-
+       img, mask = search_mask(path_img=i)
+       print('imagem ', i, ' metrics = ', metrics(img, mask))
 
 
 
