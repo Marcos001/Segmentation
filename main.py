@@ -38,7 +38,7 @@ print(len(lista_400_rgb))
 print(len(lista_800_zinza))
 print(len(lista_800_rgb))
 
-"""
+
 '''-------------------------K-means-----------------------------'''
 print('executando o k-means...')
 
@@ -115,6 +115,7 @@ arquivo_otsu.write('\n')
 
 arquivo_otsu.close()
 
+# ok
 
 
 # rodar com watershed
@@ -132,7 +133,7 @@ arquivo_watershed.write('\n')
 #calculando o tempo com outsu em imagens 400 x 400 rgb - rodar 30 vzs
 arquivo_watershed.write('Watershed_400_rgb')
 for i in range(len(lista_400_rgb)):
-    tempo_watershed = timeit.timeit("binarizando_com_outsu({})".format("'"+lista_400_rgb[i]+"', '/home/nig/PycharmProjects/Segmentation/data/segmentadas/watersherd_400_rgb_"+str(i)+".png'"),setup="from __main__ import segmentar_watersherd", number=1)
+    tempo_watershed = timeit.timeit("segmentar_watersherd({})".format("'"+lista_400_rgb[i]+"', '/home/nig/PycharmProjects/Segmentation/data/segmentadas/watersherd_400_rgb_"+str(i)+".png'"),setup="from __main__ import segmentar_watersherd", number=1)
     arquivo_watershed.write(',' + str(tempo_watershed))
 arquivo_watershed.write('\n')
 
@@ -140,7 +141,7 @@ arquivo_watershed.write('\n')
 # calculando o tempo com outsu em imagens 800 x 800 cinzas - rodar 30 vzs
 arquivo_watershed.write('Watershed_800_cinza')
 for i in range(len(lista_800_zinza)):
-    tempo_watershed = timeit.timeit("binarizando_com_outsu({})".format(
+    tempo_watershed = timeit.timeit("segmentar_watersherd({})".format(
         "'" + lista_800_zinza[i] + "', '/home/nig/PycharmProjects/Segmentation/data/segmentadas/watersherdu_800_cinza_" + str(
             i) + ".png'"), setup="from __main__ import segmentar_watersherd", number=1)
     arquivo_watershed.write(',' + str(tempo_watershed))
@@ -150,10 +151,10 @@ arquivo_watershed.write('\n')
 # calculando o tempo com outsu em imagens 800 x 800 rgb - rodar 30 vzs
 arquivo_watershed.write('Watershed_800_rgb')
 for i in range(len(lista_800_rgb)):
-    tempo_watershed = timeit.timeit("binarizando_com_outsu({})".format(
+    tempo_watershed = timeit.timeit("segmentar_watersherd({})".format(
         "'" + lista_800_rgb[i] + "', '/home/nig/PycharmProjects/Segmentation/data/segmentadas/watersherd_800_rgb_" + str(
             i) + ".png'"), setup="from __main__ import segmentar_watersherd", number=1)
     arquivo_watershed.write(',' + str(tempo_watershed))
 arquivo_watershed.write('\n')
 arquivo_watershed.close()
-"""
+
