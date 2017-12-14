@@ -3,6 +3,10 @@ import cv2, glob
 from kmeans import ver_imagem
 from outsu import get_binarizando_com_outsu
 
+def ver_imagem(path):
+    cv2.imshow(path, cv2.imread(path,0))
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
 def getMinimum(image):
     ''''''
@@ -10,6 +14,22 @@ def getMinimum(image):
     for i in range(image.shape[0]):
         for j in range(image.shape[1]):
             if image[i][j] < menor:
+                menor = image[i][j]
+    return menor
+
+def getSegundoMenor(image,_menor):
+    menor = 255
+    for i in range(image.shape[0]):
+        for j in range(image.shape[1]):
+            if image[i][j] < menor and image[i][j] != _menor:
+                menor = image[i][j]
+    return menor
+
+def caculate_cluesters(image):
+    init = image[0][0]
+    for i in range(image.shape[0]):
+        for j in range(image.shape[1]):
+            if image[i][j] != init:
                 menor = image[i][j]
     return menor
 
@@ -22,6 +42,16 @@ def getMaximum(image):
             if image[i][j] > maior:
                 maior = image[i][j]
     return maior
+
+
+def binarizar_watershed(image, maior):
+    for i in range(image.shape[0]):
+        for j in range(image.shape[1]):
+            if image[i][j] == maior:
+                image[i][j] = 255
+            else:
+                image[i][j] = 0
+    return image
 
 def binarizar(image, maior):
     for i in range(image.shape[0]):
@@ -120,15 +150,4 @@ def setar_retangulo_img(img, p, nome_imagem):
     #ver_imagem(cv2.resize(img_src,(600,400)))
 
 if __name__ == '__main__':
-    ''
-    lista = glob.glob('/media/nig/Arquivos/ICV/Bases de Imagens/Drishti GS1/Test/Images-Test/*.png')
-
-    print('inagens = ', len(lista))
-    for i in range(len(lista)):
-        nome_img = lista[i].split('/Images-Test/')[1].split('.')[0]
-        print('processando imagem ', nome_img)
-        setar_retangulo_img(cv2.imread(lista[i]), 20, '/home/nig/Área de Trabalho/bunda/'+nome_img)
-
-
-
-    #get_bounding_box(cv2.imread(path, 0))
+    ver_imagem('/home/nig/PycharmProjects/Segmentation/data/segmentadas/watersherd_400_rgb_Im025.png')

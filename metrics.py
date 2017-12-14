@@ -1,17 +1,30 @@
 
 import cv2, glob, os
 import example_plot as pl
-from boundind_box import getMaximum, binarizar
+from boundind_box import getMaximum, binarizar,getMinimum, getSegundoMenor
 
-def metrics(img, mask):
+
+def metrics(nome_img, img, mask, algoritmo):
 
     vp = 0
     vn = 0
     fp = 0
     fn = 0
 
-    img = binarizar(img, maior=getMaximum(img))
-    pl.ver_uma_imagem('segmentada', img)
+    if algoritmo != 'otsu':
+        if algoritmo == 'kmeans':
+            print('binarizando kmeans')
+            img = binarizar(img, maior=getMaximum(img))
+        else:
+            print('binarizando watershed ')
+            menor = getMinimum(img)
+            menor2 = getSegundoMenor(img, menor)
+            img = binarizar(img, maior=menor2)
+
+        pl.save_img(img, nome_img)
+
+    #pl.ver_uma_imagem('segmentada', img)
+
 
     for i in range(mask.shape[0]):
         for j in range(mask.shape[1]):
@@ -49,7 +62,7 @@ def search_mask(path_img,separator):
 
     return cv2.imread(path_img,0), cv2.imread(path_mask,0)
 
-def mensure(lista_img, separator, name_file):
+def mensure(lista_img, separator, name_file, algoritmo):
 
     _vp = 0
     _vn = 0
@@ -64,10 +77,11 @@ def mensure(lista_img, separator, name_file):
     file_metrics = open(os.getcwd()+'/reultados/'+name_file,'w') #metrics_otsu.csv
     file_metrics.write('IMAGEM,VP,VN,FP,FN,Acurácia,Sobreposição,Sensibilidade,Especificidade  \n')
     for i in lista_img:
+       nome_img = i.split('/segmentadas/')[1].split('.')[0]
        img, mask = search_mask(path_img=i,separator=separator) # 'otsu_'
-       vp, vn, fp, fn, acuracia, sobreposition, sensibilidade, especificidade  = metrics(img, mask)
+       vp, vn, fp, fn, acuracia, sobreposition, sensibilidade, especificidade  = metrics(nome_img, img, mask, algoritmo)
        print('processando img ', i, ' Sobreposição = ', sobreposition)
-       file_metrics.write('%s,%i,%i,%i,%i,%.2f,%.2f,%.2f,%.2f, \n' % (i.split('/segmentadas/')[1].split('.')[0],vp, vn, fp, fn, acuracia, sobreposition, sensibilidade, especificidade))
+       file_metrics.write('%s,%i,%i,%i,%i,%.2f,%.2f,%.2f,%.2f, \n' % (nome_img,vp, vn, fp, fn, acuracia, sobreposition, sensibilidade, especificidade))
        _vp += vp
        _vn += vn
        _fp += fp
@@ -96,23 +110,13 @@ def get_img_mask(path):
     lista_watershed = glob.glob(path + 'watersherd*')
 
     #print('calculando metricas estatisticas para OTSU >')
-    #mensure(lista_otsu,'otsu_','metrics_otsu.csv')
+    #mensure(lista_otsu,'otsu_','metrics_otsu.csv', 'otsu')
 
     #print('calculando metricas estatisticas para KMEANS >')
-    #mensure(lista_kmeans, 'kmeans_', 'metrics_kmeans.csv')
+    #mensure(lista_kmeans, 'kmeans_', 'metrics_kmeans.csv', 'kmeans')
 
     print('calculando metricas estatisticas para WATERSHED >')
-    mensure(lista_watershed, 'watersherd_', 'metrics_watershed.csv')
-
-
-
-
-    # avaliation k-means
-    print('Kmeans -> ', len(lista_kmeans))
-
-    # avaliation watershed
-    print('Bacia -> ', len(lista_watershed))
-
+    mensure(lista_watershed, 'watersherd_', 'metrics_watershed.csv','watershed')
 
 
 if __name__ == '__main__':

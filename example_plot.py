@@ -90,6 +90,11 @@ def ver_quatro_imagens(t1, t2, t3, t4, img1, img2, img3, img4):
 
     plt.show()
 
+def save_img(imagem, nome):
+    imagem = configurar_imagem_para_matploit(imagem)
+    fig, axes = plt.subplots()
+    axes.imshow(imagem,cmap='gray')
+    plt.savefig(os.getcwd()+'/binarizadas/'+nome)
 
 def histograma(imagem, hist):
     imagem = configurar_imagem_para_matploit(imagem)
