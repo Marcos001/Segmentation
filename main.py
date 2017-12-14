@@ -148,7 +148,7 @@ arquivo_time.write('\n')
 arquivo_time.write('Watershed_800_cinza')
 for i in range(len(lista_800_zinza)):
     nome_img = lista_800_zinza[i].split('/cinza/')[1]
-    tempo_watershed = timeit.timeit("segmentar_watersherd({})".format("'" + lista_800_zinza[i] + "', '/home/nig/PycharmProjects/Segmentation/data/segmentadas/watersherdu_800_cinza_" + nome_img + "'"), setup="from __main__ import segmentar_watersherd", number=1)
+    tempo_watershed = timeit.timeit("segmentar_watersherd({})".format("'" + lista_800_zinza[i] + "', '/home/nig/PycharmProjects/Segmentation/data/segmentadas/watersherd_800_cinza_" + nome_img + "'"), setup="from __main__ import segmentar_watersherd", number=1)
     arquivo_time.write(',' + str(tempo_watershed))
 arquivo_time.write('\n')
 
