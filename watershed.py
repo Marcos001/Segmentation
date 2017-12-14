@@ -49,8 +49,8 @@ def segmentar_watersherd(path, nome_img):
     markers = cv2.watershed(img, markers)
     # img[markers == -1] = [255,0,0]
 
-    #cv2.imwrite(nome_img, markers)
-    return  markers
+    cv2.imwrite(nome_img, markers)
+    #return  markers
     #ver_quatro_imagens('sure_bg', 'sure_fb', 'unknow', 'markers', sure_bg, sure_fg, unknown, markers)
     #ver_duas_imagens('normal', 'segmentada', img, markers)
 

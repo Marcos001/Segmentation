@@ -45,7 +45,8 @@ print('executando o k-means...')
 #calculando o tempo com kmeans em imagens 400 x 400 cinzas - rodar 30 vzs
 arquivo_kmeans.write('Kmeans_400_cinza')
 for i in range(len(lista_400_zinza)):
-    tempo_k_means = timeit.timeit("kmeans_cv2({})".format("'"+lista_400_zinza[i]+"', '/home/nig/PycharmProjects/Segmentation/data/segmentadas/kmeans_400_cinza_"+str(i)+".png'"), setup="from __main__ import kmeans_cv2", number=1)
+    nome_img = lista_400_zinza[i].split('/cinza/')[1]
+    tempo_k_means = timeit.timeit("kmeans_cv2({})".format("'"+lista_400_zinza[i]+"', '/home/nig/PycharmProjects/Segmentation/data/segmentadas/kmeans_400_cinza_"+nome_img+"'"), setup="from __main__ import kmeans_cv2", number=1)
     arquivo_kmeans.write(','+str(tempo_k_means))
 arquivo_kmeans.write('\n')
 
@@ -53,7 +54,8 @@ arquivo_kmeans.write('\n')
 #calculando o tempo com kmeans em imagens 400 x 400 rgb - rodar 30 vzs
 arquivo_kmeans.write('Kmeans_400_rgb')
 for i in range(len(lista_400_rgb)):
-    tempo_k_means = timeit.timeit("kmeans_cv2({})".format("'"+lista_400_rgb[i]+"', '/home/nig/PycharmProjects/Segmentation/data/segmentadas/kmeans_400_rgb_"+str(i)+".png'"), setup="from __main__ import kmeans_cv2", number=1)
+    nome_img = lista_400_rgb[i].split('/rgb/')[1]
+    tempo_k_means = timeit.timeit("kmeans_cv2({})".format("'"+lista_400_rgb[i]+"', '/home/nig/PycharmProjects/Segmentation/data/segmentadas/kmeans_400_rgb_"+nome_img+"'"), setup="from __main__ import kmeans_cv2", number=1)
     arquivo_kmeans.write(',' + str(tempo_k_means))
 arquivo_kmeans.write('\n')
 
@@ -61,7 +63,8 @@ arquivo_kmeans.write('\n')
 #calculando o tempo com kmeans em imagens 800 x 800 cinzas - rodar 30 vzs
 arquivo_kmeans.write('Kmeans_800_cinza')
 for i in range(len(lista_800_zinza)):
-    tempo_k_means = timeit.timeit("kmeans_cv2({})".format("'"+lista_800_zinza[i]+"', '/home/nig/PycharmProjects/Segmentation/data/segmentadas/kmeans_800_cinza_"+str(i)+".png'"), setup="from __main__ import kmeans_cv2", number=1)
+    nome_img = lista_800_zinza[i].split('/cinza/')[1]
+    tempo_k_means = timeit.timeit("kmeans_cv2({})".format("'"+lista_800_zinza[i]+"', '/home/nig/PycharmProjects/Segmentation/data/segmentadas/kmeans_800_cinza_"+nome_img+"'"), setup="from __main__ import kmeans_cv2", number=1)
     arquivo_kmeans.write(',' + str(tempo_k_means))
 arquivo_kmeans.write('\n')
 
@@ -70,7 +73,8 @@ arquivo_kmeans.write('\n')
 arquivo_kmeans.write('Kmeans_800_rgb')
 arquivo_kmeans.write('')
 for i in range(len(lista_800_rgb)):
-    tempo_k_means = timeit.timeit("kmeans_cv2({})".format("'"+lista_800_rgb[i]+"', '/home/nig/PycharmProjects/Segmentation/data/segmentadas/kmeans_800_rgb_"+str(i)+".png'"), setup="from __main__ import kmeans_cv2", number=1)
+    nome_img = lista_800_rgb[i].split('/rgb/')[1]
+    tempo_k_means = timeit.timeit("kmeans_cv2({})".format("'"+lista_800_rgb[i]+"', '/home/nig/PycharmProjects/Segmentation/data/segmentadas/kmeans_800_rgb_"+nome_img+"'"), setup="from __main__ import kmeans_cv2", number=1)
     arquivo_kmeans.write(','+str(tempo_k_means))
 arquivo_kmeans.write('\n')
 arquivo_kmeans.close() #fechar o arquivo apos testes com o k-means
@@ -82,7 +86,8 @@ print('executando o Otsu...')
 #calculando o tempo com outsu em imagens 400 x 400 cinzas - rodar 30 vzs
 arquivo_otsu.write('Otsu_400_cinza')
 for i in range(len(lista_400_zinza)):
-    tempo_otsu = timeit.timeit("binarizando_com_outsu({})".format("'"+lista_400_zinza[i]+"', '/home/nig/PycharmProjects/Segmentation/data/segmentadas/otsu_400_cinza_"+str(i)+".png'"),setup="from __main__ import binarizando_com_outsu", number=1)
+    nome_img = lista_400_zinza[i].split('/cinza/')[1]
+    tempo_otsu = timeit.timeit("binarizando_com_outsu({})".format("'"+lista_400_zinza[i]+"', '/home/nig/PycharmProjects/Segmentation/data/segmentadas/otsu_400_cinza_"+nome_img+"'"),setup="from __main__ import binarizando_com_outsu", number=1)
     arquivo_otsu.write(','+str(tempo_otsu))
 arquivo_otsu.write('\n')
 
@@ -90,7 +95,8 @@ arquivo_otsu.write('\n')
 #calculando o tempo com outsu em imagens 400 x 400 rgb - rodar 30 vzs
 arquivo_otsu.write('Otsu_400_rgb')
 for i in range(len(lista_400_rgb)):
-    tempo_otsu = timeit.timeit("binarizando_com_outsu({})".format("'"+lista_400_rgb[i]+"', '/home/nig/PycharmProjects/Segmentation/data/segmentadas/otsu_400_rgb_"+str(i)+".png'"),setup="from __main__ import binarizando_com_outsu", number=1)
+    nome_img = lista_400_rgb[i].split('/rgb/')[1]
+    tempo_otsu = timeit.timeit("binarizando_com_outsu({})".format("'"+lista_400_rgb[i]+"', '/home/nig/PycharmProjects/Segmentation/data/segmentadas/otsu_400_rgb_"+nome_img+"'"),setup="from __main__ import binarizando_com_outsu", number=1)
     arquivo_otsu.write(','+str(tempo_otsu))
 arquivo_otsu.write('\n')
 
@@ -98,9 +104,9 @@ arquivo_otsu.write('\n')
 # calculando o tempo com outsu em imagens 800 x 800 cinzas - rodar 30 vzs
 arquivo_otsu.write('Otsu_800_cinza')
 for i in range(len(lista_800_zinza)):
+    nome_img = lista_800_zinza[i].split('/cinza/')[1]
     tempo_otsu = timeit.timeit("binarizando_com_outsu({})".format(
-        "'" + lista_800_zinza[i] + "', '/home/nig/PycharmProjects/Segmentation/data/segmentadas/otsu_800_cinza_" + str(
-            i) + ".png'"), setup="from __main__ import binarizando_com_outsu", number=1)
+        "'" + lista_800_zinza[i] + "', '/home/nig/PycharmProjects/Segmentation/data/segmentadas/otsu_800_cinza_" + nome_img + "'"), setup="from __main__ import binarizando_com_outsu", number=1)
     arquivo_otsu.write(',' + str(tempo_otsu))
 arquivo_otsu.write('\n')
 
@@ -108,8 +114,9 @@ arquivo_otsu.write('\n')
 # calculando o tempo com outsu em imagens 800 x 800 rgb - rodar 30 vzs
 arquivo_otsu.write('Otsu_800_rgb')
 for i in range(len(lista_800_rgb)):
+    nome_img = lista_800_rgb[i].split('/rgb/')[1]
     tempo_otsu = timeit.timeit("binarizando_com_outsu({})".format(
-        "'" + lista_800_rgb[i] + "', '/home/nig/PycharmProjects/Segmentation/data/segmentadas/otsu_800_rgb_" + str(i) + ".png'"), setup="from __main__ import binarizando_com_outsu", number=1)
+        "'" + lista_800_rgb[i] + "', '/home/nig/PycharmProjects/Segmentation/data/segmentadas/otsu_800_rgb_" + nome_img + "'"), setup="from __main__ import binarizando_com_outsu", number=1)
     arquivo_otsu.write(','+str(tempo_otsu))
 arquivo_otsu.write('\n')
 
@@ -125,7 +132,8 @@ print('executando o watershed...')
 #calculando o tempo com watershed em imagens 400 x 400 cinzas - rodar 30 vzs
 arquivo_watershed.write('Watershed_400_cinza')
 for i in range(len(lista_400_zinza)):
-    tempo_watershed = timeit.timeit("segmentar_watersherd({})".format("'"+lista_400_zinza[i]+"', '/home/nig/PycharmProjects/Segmentation/data/segmentadas/watersherd_400_cinza_"+str(i)+".png'"),setup="from __main__ import segmentar_watersherd", number=1)
+    nome_img = lista_400_zinza[i].split('/cinza/')[1]
+    tempo_watershed = timeit.timeit("segmentar_watersherd({})".format("'"+lista_400_zinza[i]+"', '/home/nig/PycharmProjects/Segmentation/data/segmentadas/watersherd_400_cinza_"+nome_img+"'"),setup="from __main__ import segmentar_watersherd", number=1)
     arquivo_watershed.write(',' + str(tempo_watershed))
 arquivo_watershed.write('\n')
 
@@ -133,7 +141,8 @@ arquivo_watershed.write('\n')
 #calculando o tempo com outsu em imagens 400 x 400 rgb - rodar 30 vzs
 arquivo_watershed.write('Watershed_400_rgb')
 for i in range(len(lista_400_rgb)):
-    tempo_watershed = timeit.timeit("segmentar_watersherd({})".format("'"+lista_400_rgb[i]+"', '/home/nig/PycharmProjects/Segmentation/data/segmentadas/watersherd_400_rgb_"+str(i)+".png'"),setup="from __main__ import segmentar_watersherd", number=1)
+    nome_img = lista_400_rgb[i].split('/rgb/')[1]
+    tempo_watershed = timeit.timeit("segmentar_watersherd({})".format("'"+lista_400_rgb[i]+"', '/home/nig/PycharmProjects/Segmentation/data/segmentadas/watersherd_400_rgb_"+nome_img+"'"),setup="from __main__ import segmentar_watersherd", number=1)
     arquivo_watershed.write(',' + str(tempo_watershed))
 arquivo_watershed.write('\n')
 
@@ -141,9 +150,8 @@ arquivo_watershed.write('\n')
 # calculando o tempo com outsu em imagens 800 x 800 cinzas - rodar 30 vzs
 arquivo_watershed.write('Watershed_800_cinza')
 for i in range(len(lista_800_zinza)):
-    tempo_watershed = timeit.timeit("segmentar_watersherd({})".format(
-        "'" + lista_800_zinza[i] + "', '/home/nig/PycharmProjects/Segmentation/data/segmentadas/watersherdu_800_cinza_" + str(
-            i) + ".png'"), setup="from __main__ import segmentar_watersherd", number=1)
+    nome_img = lista_800_zinza[i].split('/cinza/')[1]
+    tempo_watershed = timeit.timeit("segmentar_watersherd({})".format("'" + lista_800_zinza[i] + "', '/home/nig/PycharmProjects/Segmentation/data/segmentadas/watersherdu_800_cinza_" + nome_img + "'"), setup="from __main__ import segmentar_watersherd", number=1)
     arquivo_watershed.write(',' + str(tempo_watershed))
 arquivo_watershed.write('\n')
 
@@ -151,10 +159,10 @@ arquivo_watershed.write('\n')
 # calculando o tempo com outsu em imagens 800 x 800 rgb - rodar 30 vzs
 arquivo_watershed.write('Watershed_800_rgb')
 for i in range(len(lista_800_rgb)):
-    tempo_watershed = timeit.timeit("segmentar_watersherd({})".format(
-        "'" + lista_800_rgb[i] + "', '/home/nig/PycharmProjects/Segmentation/data/segmentadas/watersherd_800_rgb_" + str(
-            i) + ".png'"), setup="from __main__ import segmentar_watersherd", number=1)
+    nome_img = lista_800_rgb[i].split('/rgb/')[1]
+    tempo_watershed = timeit.timeit("segmentar_watersherd({})".format("'" + lista_800_rgb[i] + "', '/home/nig/PycharmProjects/Segmentation/data/segmentadas/watersherd_800_rgb_" + nome_img + "'"), setup="from __main__ import segmentar_watersherd", number=1)
     arquivo_watershed.write(',' + str(tempo_watershed))
 arquivo_watershed.write('\n')
 arquivo_watershed.close()
+
 
