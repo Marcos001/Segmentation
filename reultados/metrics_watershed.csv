@@ -239,11 +239,3 @@ watersherd_800_rgb_Im008,221131,0,120146,298723,34.55,34.55,42.54,0.00
 watersherd_800_cinza_Im022,177718,4233,226011,232038,28.43,27.95,43.37,1.84
 watersherd_400_cinza_Im024,32953,15877,54512,56658,30.52,22.86,36.77,22.56
 watersherd_400_cinza_Im057,40180,816,33342,85662,25.62,25.24,31.93,2.39
-VP total = 30457009 
-VN total = 838435 
-FP total = 33416000 
-FN total = 33416000 
-Acurácia total = 32.60 
-Sobreposição total = 31.74 
-Sensibilidade total = 55.00 
-Especificidade total = 2.74 
