@@ -109,11 +109,11 @@ def get_img_mask(path):
     lista_kmeans = glob.glob(path + 'kmeans*')
     lista_watershed = glob.glob(path + 'watersherd*')
 
-    #print('calculando metricas estatisticas para OTSU >')
-    #mensure(lista_otsu,'otsu_','metrics_otsu.csv', 'otsu')
+    print('calculando metricas estatisticas para OTSU >')
+    mensure(lista_otsu,'otsu_','metrics_otsu.csv', 'otsu')
 
-    #print('calculando metricas estatisticas para KMEANS >')
-    #mensure(lista_kmeans, 'kmeans_', 'metrics_kmeans.csv', 'kmeans')
+    print('calculando metricas estatisticas para KMEANS >')
+    mensure(lista_kmeans, 'kmeans_', 'metrics_kmeans.csv', 'kmeans')
 
     print('calculando metricas estatisticas para WATERSHED >')
     mensure(lista_watershed, 'watersherd_', 'metrics_watershed.csv','watershed')
