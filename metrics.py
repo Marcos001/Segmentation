@@ -95,9 +95,9 @@ def mensure(lista_img, separator, name_file, algoritmo,modo):
 
     file_metrics_main = open(os.getcwd() + '/reultados/resultad_geral.csv', mode=modo)
     if modo == 'w':
-        file_metrics_main.write('%s' %('Algoritmo,VP,VN,FP,FN,Acurácia,Sobreposição,Sensibilidade,Especificidade'))
+        file_metrics_main.write('%s' %('Algoritmo,VP,VN,FP,FN,Acurácia,Sobreposição,Sensibilidade,Especificidade\n'))
 
-    file_metrics_main.write('VP total = %s,%i,%i,%i,%i,%.2f,%.2f,%.2f,%.2f' %(name_file.split('.')[0],_vp,_vn,_fp,_fn,_acuracia/len(lista_img),_sobreposition/len(lista_img),_sensibilidade/len(lista_img),_especificidade/len(lista_img)))
+    file_metrics_main.write('%s,%i,%i,%i,%i,%.2f,%.2f,%.2f,%.2f\n' %(name_file.split('.')[0],_vp,_vn,_fp,_fn,_acuracia/len(lista_img),_sobreposition/len(lista_img),_sensibilidade/len(lista_img),_especificidade/len(lista_img)))
     file_metrics_main.close()
 
 def get_img_mask(path):
@@ -108,13 +108,13 @@ def get_img_mask(path):
     lista_watershed = glob.glob(path + 'watersherd*')
 
     print('calculando metricas estatisticas para OTSU >')
-    mensure(lista_otsu,'otsu_','metrics_otsu.csv', 'otsu')
+    mensure(lista_otsu,'otsu_','metrics_otsu.csv', 'otsu','w')
 
     print('calculando metricas estatisticas para KMEANS >')
-    mensure(lista_kmeans, 'kmeans_', 'metrics_kmeans.csv', 'kmeans')
+    mensure(lista_kmeans, 'kmeans_', 'metrics_kmeans.csv', 'kmeans','a')
 
     print('calculando metricas estatisticas para WATERSHED >')
-    mensure(lista_watershed, 'watersherd_', 'metrics_watershed.csv','watershed')
+    mensure(lista_watershed, 'watersherd_', 'metrics_watershed.csv','watershed','a')
 
 
 if __name__ == '__main__':
