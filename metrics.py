@@ -2,6 +2,7 @@
 import cv2, glob, os
 import example_plot as pl
 from boundind_box import getMaximum, binarizar,getMinimum, getSegundoMenor
+from util import porcentagem
 
 
 def metrics(nome_img, img, mask, algoritmo):
@@ -33,12 +34,12 @@ def metrics(nome_img, img, mask, algoritmo):
                 if mask[i][j] == img[i][j]:
                     vp+=1
                 if mask[i][j] != img[i][j]:
-                    vn+=1
+                    fn+=1
             if mask[i][j] != 255:
                 if mask[i][j] == img[i][j]:
-                    fp += 1
+                    vn += 1
                 if mask[i][j] != img[i][j]:
-                    fn += 1
+                    fp += 1
 
     sobreposition = vp / (vp+fp+fn)
     acuracia = (vp+vn) / (vp + vn + fp + fn)
@@ -46,6 +47,8 @@ def metrics(nome_img, img, mask, algoritmo):
     especificidade = (vn) / (vn + fp)
 
     return vp, vn, fp, fn, float('%.2f' % ( acuracia * 100 )), float('%.2f' % ( sobreposition * 100 )), float('%.2f' % ( sensibilidade * 100 )), float('%.2f' % ( especificidade * 100 ))
+
+
 
 def search_mask(path_img,separator):
 
@@ -73,14 +76,17 @@ def mensure(lista_img, separator, name_file, algoritmo,modo):
     _sensibilidade = 0
     _especificidade = 0
 
+
     print(' SIZE -> ', len(lista_img))
     file_metrics = open(os.getcwd()+'/reultados/'+name_file,'w') #metrics_otsu.csv
     file_metrics.write('IMAGEM,VP,VN,FP,FN,Acurácia,Sobreposição,Sensibilidade,Especificidade  \n')
+    n = len(lista_img)
+    indice = 1
     for i in lista_img:
        nome_img = i.split('/segmentadas/')[1].split('.')[0]
        img, mask = search_mask(path_img=i,separator=separator) # 'otsu_'
        vp, vn, fp, fn, acuracia, sobreposition, sensibilidade, especificidade  = metrics(nome_img, img, mask, algoritmo)
-       print('processando img ', i, ' Sobreposição = ', sobreposition)
+       print('LOG -> ',porcentagem(indice, n))
        file_metrics.write('%s,%i,%i,%i,%i,%.2f,%.2f,%.2f,%.2f, \n' % (nome_img,vp, vn, fp, fn, acuracia, sobreposition, sensibilidade, especificidade))
        _vp += vp
        _vn += vn
@@ -90,6 +96,7 @@ def mensure(lista_img, separator, name_file, algoritmo,modo):
        _acuracia += acuracia
        _sensibilidade += sensibilidade
        _especificidade += especificidade
+       indice+=1
 
     file_metrics.close()
 
