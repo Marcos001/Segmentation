@@ -62,7 +62,7 @@ def search_mask(path_img,separator):
 
     return cv2.imread(path_img,0), cv2.imread(path_mask,0)
 
-def mensure(lista_img, separator, name_file, algoritmo):
+def mensure(lista_img, separator, name_file, algoritmo,modo):
 
     _vp = 0
     _vn = 0
@@ -91,16 +91,14 @@ def mensure(lista_img, separator, name_file, algoritmo):
        _sensibilidade += sensibilidade
        _especificidade += especificidade
 
-    file_metrics.write('VP total = %i \n' % _vp)
-    file_metrics.write('VN total = %i \n' % _vn)
-    file_metrics.write('FP total = %i \n' % _fp)
-    file_metrics.write('FN total = %i \n' % _fp)
-
-    file_metrics.write('Acurácia total = %.2f \n' %(_acuracia/len(lista_img)))
-    file_metrics.write('Sobreposição total = %.2f \n' %(_sobreposition/len(lista_img)))
-    file_metrics.write('Sensibilidade total = %.2f \n' %(_sensibilidade/len(lista_img)))
-    file_metrics.write('Especificidade total = %.2f \n' %(_especificidade/len(lista_img)))
     file_metrics.close()
+
+    file_metrics_main = open(os.getcwd() + '/reultados/resultad_geral.csv', mode=modo)
+    if modo == 'w':
+        file_metrics_main.write('%s' %('Algoritmo,VP,VN,FP,FN,Acurácia,Sobreposição,Sensibilidade,Especificidade'))
+
+    file_metrics_main.write('VP total = %s,%i,%i,%i,%i,%.2f,%.2f,%.2f,%.2f' %(name_file.split('.')[0],_vp,_vn,_fp,_fn,_acuracia/len(lista_img),_sobreposition/len(lista_img),_sensibilidade/len(lista_img),_especificidade/len(lista_img)))
+    file_metrics_main.close()
 
 def get_img_mask(path):
     ''''''
