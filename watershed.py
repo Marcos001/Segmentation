@@ -3,6 +3,9 @@ import os
 import numpy as np
 from example_plot import ver_duas_imagens, ver_tres_imagens, ver_quatro_imagens
 
+import itertools
+from matplotlib import pyplot as plt
+import numpy as np
 
 def ver_img(img):
     cv2.imshow('1.png', img)
@@ -50,13 +53,39 @@ def segmentar_watersherd(path, nome_img):
 
     # img[markers == -1] = [255,0,0]
 
-    #cv2.imwrite(nome_img, markers)
-    return  markers
+    cv2.imwrite(nome_img, markers)
+    #return  markers
     #ver_quatro_imagens('sure_bg', 'sure_fb', 'unknow', 'markers', sure_bg, sure_fg, unknown, markers)
     #ver_duas_imagens('normal', 'segmentada', img, markers)
 
 
+def plot_confusion_matrix(cm, classes,normalize=False, title='Confusion matrix', cmap=plt.cm.Blues):
+    """
+    This function prints and plots the confusion matrix.
+    Normalization can be applied by setting `normalize=True`.
+    """
 
+    """"""
+    plt.imshow(cm, interpolation='nearest', cmap=cmap)
+    plt.title(title)
+    plt.colorbar()
+    tick_marks = np.arange(len(classes))
+    plt.xticks(tick_marks, classes, rotation=45)
+    plt.yticks(tick_marks, classes)
+
+    if normalize:
+        cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+
+    thresh = cm.max() / 2.
+    for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
+        plt.text(j, i, cm[i, j],
+                 horizontalalignment="center",
+                 color="white" if cm[i, j] > thresh else "black")
+
+    plt.tight_layout()
+    plt.ylabel('True label')
+    plt.xlabel('Predicted label')
+    plt.show()
 
 
 
