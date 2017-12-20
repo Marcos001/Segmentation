@@ -173,44 +173,83 @@ def plot_confusion_matrix(cm, classes,
         plt.show()
 
 def barchart():
-    n_groups = 3
 
-    means_men = (85.96,63.40,72.42)
-    #std_men = (2, 3, 4, 1, 2)
+    n_groups = 3 # algoritmos
 
-    means_women = (25, 32, 34)
-    #std_women = (3, 5, 2, 3, 3)
+    means_acuracia = (85.96, 87.48,68.27)
+    std_men = (2, 3, 1)
+
+    means_sobreposition = (63.40,67.98,53.21)
+    std_women = (1, 3, 1)
+
+    means_sen = (72.42, 78.29, 96.14)
+    # std_women = (3, 5, 2, 3, 3)
+
+    means_esp = (92.56, 91.89,54.91)
+    # std_women = (3, 5, 2, 3, 3)
 
     fig, ax = plt.subplots()
 
     index = np.arange(n_groups)
     print('index is ',index)
-    bar_width = 0.35
+    bar_width = 0.20 #35
 
     opacity = 0.4
     error_config = {'ecolor': '0.3'}
 
-    rects1 = plt.bar(index, means_men, bar_width,
+    acuracia = plt.bar(index, means_acuracia, bar_width,
                      alpha=opacity,
                      color='b',
-                     #yerr=std_men,
+                     yerr=std_men,
                      error_kw=error_config,
                      label='Acurácia')
 
-    rects2 = plt.bar(index + bar_width, means_women, bar_width,
+    sobreposition = plt.bar(index + bar_width, means_sobreposition, bar_width,
                      alpha=opacity,
                      color='r',
-                     #yerr=std_women,
+                     yerr=std_women,
                      error_kw=error_config,
                      label='Sobreposição')
+
+    sensibilidade = plt.bar(index + (2*bar_width), means_sen, bar_width,
+                     alpha=opacity,
+                     color='y',
+                     #yerr=std_women,
+                     error_kw=error_config,
+                     label='Sensibilidade')
+
+    especificidade = plt.bar(index + (3*bar_width), means_esp, bar_width,
+                     alpha=opacity,
+                     color='g',
+                     #yerr=std_women,
+                     error_kw=error_config,
+                     label='Especificidade')
+
+    def autolabel(rects):
+        """
+        Attach a text label above each bar displaying its height
+        """
+        for rect in rects:
+            height = rect.get_height()
+            ax.text(rect.get_x() + rect.get_width() / 2., 1.05 * height,
+                    '%d' % int(height),
+                    ha='center', va='bottom')
+
+
 
     plt.xlabel('Algoritmos')
     plt.ylabel(' Scores ')
     plt.title(' Avaliação da Segmentação ')
     plt.xticks(index + bar_width / 2, ('Otsu', 'Kmeans', 'WaterShed'))
-    plt.legend()
+    plt.legend() #
+    plt.grid()
 
     plt.tight_layout()
+    autolabel(acuracia)
+    autolabel(sobreposition)
+    autolabel(sensibilidade)
+    autolabel(especificidade)
+
     plt.show()
 
 
