@@ -177,18 +177,19 @@ def barchart():
     n_groups = 3 # algoritmos
 
     means_acuracia = (85.96, 87.48,68.27)
-    std_men = (2, 3, 1)
+    std_acc = (2, 3, 1)
 
     means_sobreposition = (63.40,67.98,53.21)
-    std_women = (1, 3, 1)
+    std_sob = (1, 3, 1)
 
     means_sen = (72.42, 78.29, 96.14)
-    # std_women = (3, 5, 2, 3, 3)
+    std_sen = (1, 2, 3)
 
     means_esp = (92.56, 91.89,54.91)
-    # std_women = (3, 5, 2, 3, 3)
+    std_esp = (3, 2, 1)
 
     fig, ax = plt.subplots()
+    fig.set_size_inches(12,8)
 
     index = np.arange(n_groups)
     print('index is ',index)
@@ -197,33 +198,33 @@ def barchart():
     opacity = 0.4
     error_config = {'ecolor': '0.3'}
 
-    acuracia = plt.bar(index, means_acuracia, bar_width,
-                     alpha=opacity,
-                     color='b',
-                     yerr=std_men,
-                     error_kw=error_config,
-                     label='Acurácia')
-
-    sobreposition = plt.bar(index + bar_width, means_sobreposition, bar_width,
+    sobreposition = plt.bar(index, means_sobreposition, bar_width,
                      alpha=opacity,
                      color='r',
-                     yerr=std_women,
+                     yerr=std_sob,
                      error_kw=error_config,
                      label='Sobreposição')
 
-    sensibilidade = plt.bar(index + (2*bar_width), means_sen, bar_width,
+    sensibilidade = plt.bar(index + bar_width, means_sen, bar_width,
                      alpha=opacity,
                      color='y',
-                     #yerr=std_women,
+                     yerr=std_sen,
                      error_kw=error_config,
                      label='Sensibilidade')
 
-    especificidade = plt.bar(index + (3*bar_width), means_esp, bar_width,
+    especificidade = plt.bar(index + (2*bar_width), means_esp, bar_width,
                      alpha=opacity,
                      color='g',
-                     #yerr=std_women,
+                     yerr=std_esp,
                      error_kw=error_config,
                      label='Especificidade')
+
+    acuracia = plt.bar(index+ (3*bar_width), means_acuracia, bar_width,
+                     alpha=opacity,
+                     color='b',
+                     yerr=std_acc,
+                     error_kw=error_config,
+                     label='Acurácia')
 
     def autolabel(rects):
         """
@@ -242,13 +243,13 @@ def barchart():
     plt.title(' Avaliação da Segmentação ')
     plt.xticks(index + bar_width / 2, ('Otsu', 'Kmeans', 'WaterShed'))
     plt.legend() #
-    plt.grid()
-
+    plt.grid(True)
     plt.tight_layout()
-    autolabel(acuracia)
+
     autolabel(sobreposition)
     autolabel(sensibilidade)
     autolabel(especificidade)
+    autolabel(acuracia)
 
     plt.show()
 
