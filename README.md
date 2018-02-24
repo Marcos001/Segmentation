@@ -1,6 +1,6 @@
 # Processamento Digital de Imagens Médicas com Python e OpenCV
 
-Na área médica, muitas anomalias são diagnosticados a partir de imagens digitais. A de-
+<p> Na área médica, muitas anomalias são diagnosticados a partir de imagens digitais. A de-
 tecção precoce dessas anomalias é fundamental para um tratamento mais eficiente e com
 menos riscos ao paciente, além de aumentar as chances de prognóstico mais favorável.
 Com o objetivo de melhorar o diagnóstico médico através de imagens, o processamento
@@ -14,6 +14,7 @@ médicas com a biblioteca OpenCV usando a linguagem Python. Deseja-se permitir, 
 vés do conteúdo ministrada, uma visão introdutória ao PDI, provendo um maior entendi-
 mento no aprendizado com aplicações práticas, despertando um maior interesse e novas
 idéias para aplicações nas mais variadas áreas do conhecimento.
+</p>
 
 ### Anais Eletrônicos ENUCOMP 2017 - X Encontro Unificado de Computação - www.enucomp.com.br/2017 - ISBN: 978-85-8320-201-1 331
 
