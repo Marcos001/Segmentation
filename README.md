@@ -1,25 +1,19 @@
-# Segmentation
+# Processamento Digital de Imagens Médicas com Python e OpenCV
 
-Segmentação com Otsu e Kmeans e mesuração de tempo de execução com imagens da retina. As imagens estão em tons de cinza
-e RGB com tamanhos de 400x400 e 800x800.
+Na área médica, muitas anomalias são diagnosticados a partir de imagens digitais. A de-
+tecção precoce dessas anomalias é fundamental para um tratamento mais eficiente e com
+menos riscos ao paciente, além de aumentar as chances de prognóstico mais favorável.
+Com o objetivo de melhorar o diagnóstico médico através de imagens, o processamento
+digital de imagens estuda requisitos para extrair informações técnicas a fim de melhorar
+os parâmetros para um diagnóstico mais preciso. Sistemas de apoio a decisão, chamados
+de Computer Aided Detection/Diagnosis - CAD/CADx, são ferramentas computacionais
+para auxiliar o diagnóstico médico através de imagens, proporcionando ao especialista
+uma segunda opinião para um diagnóstico mais preciso. Assim, tem-se como proposta
+apresentar uma introdução ao Processamento Digital de Imagens aplicado a Imagens
+médicas com a biblioteca OpenCV usando a linguagem Python. Deseja-se permitir, atra-
+vés do conteúdo ministrada, uma visão introdutória ao PDI, provendo um maior entendi-
+mento no aprendizado com aplicações práticas, despertando um maior interesse e novas
+idéias para aplicações nas mais variadas áreas do conhecimento.
 
+### Anais Eletrônicos ENUCOMP 2017 - X Encontro Unificado de Computação - www.enucomp.com.br/2017 - ISBN: 978-85-8320-201-1 331
 
-Funcionamento da binarização do algoritmo de segmentação Otsu:
-
-σ2w(t)=q1(t)σ21(t)+q2(t)σ22(t)
-
-onde :
-
-q1(t)=∑ti=1P(i)&q1(t)=∑Ii=t+1P(i)
-
-& :
-
-μ1(t)=∑ti=1iP(i)q1(t)&μ2(t)=∑Ii=t+1iP(i)q2(t)
-
-& :
-
-σ21(t)=∑ti=1[i−μ1(t)]2P(i)q1(t)&σ22(t)=∑Ii=t+1[i−μ1(t)]2P(i)q2(t)
-
-conteudo implementado com base em: 
-http://www.meccanismocomplesso.org/opencv-python-otsu-binarization-thresholding/ e também 
-no site do OpenCV http://docs.opencv.org/trunk/d7/d4d/tutorial_py_thresholding.html.
