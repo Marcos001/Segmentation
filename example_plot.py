@@ -4,6 +4,9 @@ import matplotlib.image as mpimg
 import matplotlib.mlab as mlab
 import itertools
 import numpy as np
+plt.rcParams['legend.fontsize'] = 18
+# plt.rcParams['figure.figsize'] = (13,13)
+plt.rcParams.update({'font.size': 24})
 
 import os
 
@@ -69,7 +72,7 @@ def ver_tres_imagens(t1, t2, t3, img1, img2, img3):
     plt.show()
 
 
-def ver_quatro_imagens(t1, t2, t3, t4, img1, img2, img3, img4):
+def ver_quatro_imagens(t1, t2, t3, t4, img1, img2, img3, img4, legenda):
 
     img1 = configurar_imagem_para_matploit(img1)
     img2 = configurar_imagem_para_matploit(img2)
@@ -89,6 +92,9 @@ def ver_quatro_imagens(t1, t2, t3, t4, img1, img2, img3, img4):
 
     eixo[1][1].set_title(t4)
     eixo[1][1].imshow(img4, cmap='gray')
+
+
+    plt.legend(legenda)
 
     plt.show()
 
@@ -177,71 +183,73 @@ def barchart():
     n_groups = 3 # algoritmos
 
     means_acuracia = (85.96, 87.48,68.27)
-    std_acc = (2, 3, 1)
+    std_acc = (1, 1, 1)
 
     means_sobreposition = (63.40,67.98,53.21)
-    std_sob = (1, 3, 1)
+    std_sob = (1, 1, 1)
 
     means_sen = (72.42, 78.29, 96.14)
-    std_sen = (1, 2, 3)
+    std_sen = (1, 1, 1)
 
     means_esp = (92.56, 91.89,54.91)
-    std_esp = (3, 2, 1)
+    std_esp = (1, 1, 1)
 
-    fig, ax = plt.subplots()
-    fig.set_size_inches(12,8)
+    fig, ax = plt.subplots() #figsize=(16, 9)
+    fig.set_size_inches(16,8)
+    #fig.yaxis.set_ticks_position('left')
 
     index = np.arange(n_groups)
     print('index is ',index)
-    bar_width = 0.20 #35
+    bar_width = 0.22 #35
 
-    opacity = 0.4
+    opacity = 0.5
     error_config = {'ecolor': '0.3'}
 
     sobreposition = plt.bar(index, means_sobreposition, bar_width,
                      alpha=opacity,
                      color='r',
-                     yerr=std_sob,
+                     #yerr=std_sob,
                      error_kw=error_config,
-                     label='Sobreposição')
+                     label=' Overlay ',
+                     align='center') # sobreposição
 
     sensibilidade = plt.bar(index + bar_width, means_sen, bar_width,
                      alpha=opacity,
                      color='y',
-                     yerr=std_sen,
+                     #yerr=std_sen,
                      error_kw=error_config,
-                     label='Sensibilidade')
+                     label='Sensitivity')
 
     especificidade = plt.bar(index + (2*bar_width), means_esp, bar_width,
                      alpha=opacity,
                      color='g',
-                     yerr=std_esp,
+                     #yerr=std_esp,
                      error_kw=error_config,
-                     label='Especificidade')
+                     label='Specificity')
 
     acuracia = plt.bar(index+ (3*bar_width), means_acuracia, bar_width,
                      alpha=opacity,
                      color='b',
-                     yerr=std_acc,
+                     #yerr=std_acc,
                      error_kw=error_config,
-                     label='Acurácia')
+                     label='Accuracy')
 
     def autolabel(rects):
         """
         Attach a text label above each bar displaying its height
         """
         for rect in rects:
-            height = rect.get_height()
-            ax.text(rect.get_x() + rect.get_width() / 2., 1.05 * height,
-                    '%d' % int(height),
-                    ha='center', va='bottom')
+            height = rect.get_height()-5
+            #ax.text(rect.get_x() + rect.get_width() / 2., 1.05 * height, #2.
+            #        '%d' % int(height),
+            #        ha='center', va='center')
 
 
 
-    plt.xlabel('Algoritmos')
+    plt.xlabel('Segmentation Algorithms')
     plt.ylabel(' Scores ')
-    plt.title(' Avaliação da Segmentação ')
-    plt.xticks(index + bar_width / 2, ('Otsu', 'Kmeans', 'WaterShed'))
+    #plt.title(' Avaliação da Segmentação ')
+    plt.xticks(index + bar_width / 1, ('Otsu', 'Kmeans', 'WaterShed'))
     plt.legend() #
     plt.grid(True)
     plt.tight_layout()
@@ -256,4 +264,4 @@ def barchart():
 
 # https://www.pyimagesearch.com/2014/11/03/display-matplotlib-rgb-image/
 
-barchart()
+#barchart()
